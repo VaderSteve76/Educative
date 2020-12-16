@@ -162,7 +162,7 @@ console.log("Least Common Number: " + findLeastCommonNumber(v1, v2, v3));
 
 //////////////////////////////////////////////////////
 
-// Rotate an Array by N Elements
+// Rotate an Array by N Elements solution 1
 let reverseArray = function(arr, start, end) {
   while(start < end) {
     let temp = arr[start];
@@ -200,3 +200,42 @@ rotateArray(arr, 2);
 
 console.log("Array After Rotation");
 console.log(arr);
+
+
+// Rotate an Array by N elements solution 2
+let rotateArray = function(arr, n) {
+  let len = arr.length;
+  // normalize rotations if N > arr or N is -negative
+  n = n % len;
+  if(n < 0) {
+    // calculate positive rotations
+    n = n + len;
+  }
+  let temp = 0;
+  // copy last N elements of arr into temp
+  for(let i = 0; i< n; i++) {
+    temp[i] = arr[len - n + i];
+  }
+  // shift original arr
+  for(let i = len - 1; i >= n; i--) {
+    arr[i] = arr[i - n];
+  }
+  // copy temp into orig arr
+  for(let i = 0; i < n; i++) {
+    arr[i] = temp[i];
+  } 
+}
+
+let arr = [1, 10, 20, 0, 59, 86, 32, 11, 9, 40];
+
+console.log("Array Before Rotation");
+console.log(arr);
+
+rotateArray(arr, -3);
+
+console.log("Array After Rotation");
+console.log(arr);
+//////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////
